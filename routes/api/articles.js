@@ -3,13 +3,13 @@ const articleController = require("../../controllers/articleController");
 
 //for all articles
 router.route("/")
-    .get(articleController.findAll)
-    .post(articleController.create);
+	.get(articleController.findAll)
+	.post(articleController.create);
 
 //for individual aritlces
 router.route("/:id")
-    .get(articleController.findById)
-    .put(articleController.update)
-    .delete(articleController.remove);
+	.get(articleController.findById)
+	.put(articleController.update)
+	.delete(articleController.remove);
 
 module.exports = router;
