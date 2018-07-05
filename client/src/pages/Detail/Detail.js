@@ -15,7 +15,36 @@ class Detail extends Component {
             .catch(err=> console.log(err));
     }
 
-    
+    render() {
+        return (
+            <Container fluid>
+                <Row>
+                    <Col size="md-12">
+                        <Jumbotron>
+                            <h1>
+                                {this.state.article.title}
+                            </h1>
+                        </Jumbotron>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col size="md-10 md-offset-1">
+                        <article>
+                            {this.state.article.date}
+                        </article>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col size="md-2">
+                            <h3>Read it here: </h3>
+                        <Link to="/">
+
+                        </Link>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    } 
 }
 
 export default Detail;
