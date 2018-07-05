@@ -5,9 +5,10 @@ const App = () => (
     <Router>
         <div>
             <Switch>
-                <Route exact path="" />
-                <Route exact path="" />
-                <Route exact path="" />
+                <Route exact path="/" />
+                <Route exact path="/" />
+                <Route exact path="/" />
+                <Route component={NoMatch} />
             </Switch>
         </div>
     </Router>
