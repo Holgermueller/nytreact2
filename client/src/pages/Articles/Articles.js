@@ -89,7 +89,7 @@ class Articles extends Component {
 								className="search"
 							>
 								Search
-                            </FormBtn>
+              </FormBtn>
 						</form>
 					</Col>
 					<Col size="md-6 sm-12">
@@ -110,7 +110,7 @@ class Articles extends Component {
 								))}
 							</List>
 						) : (
-								<h3>No Results to Display</h3>
+								<h3 className="place-holder">No Results to Display</h3>
 							)}
 					</Col>
 				</Row>
