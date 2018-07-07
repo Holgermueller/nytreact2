@@ -1,0 +1,9 @@
+input {
+    text-align: center;
+    width: 50%;
+}
+
+formbtn {
+    text-align: center;
+    background-color: red;
+}
