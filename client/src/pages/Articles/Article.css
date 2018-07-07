@@ -3,6 +3,9 @@ h1, h3 {
     color: ghostwhite;
     width: 50%;
     margin-left: 25%;
+    border-radius: 15px;
+    padding: 4px;
+    text-align: center;
 }
 
 input {
@@ -10,8 +13,4 @@ input {
     width: 50%;
     margin-left: 25%;
     line-height: 3px;
-}
-
-form {
-    text-align: center;
 }
