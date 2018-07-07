@@ -84,7 +84,7 @@ class Articles extends Component {
 							>
 							</Input>
 							<FormBtn
-								disabled={!(this.state.topic && this.state.startYear && this.state.endYear)}
+								disabled={!(this.state.topic)}
 								onClick={this.handleFormSubmit}
 								className="search"
 							>
