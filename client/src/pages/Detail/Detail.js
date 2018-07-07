@@ -38,12 +38,12 @@ class Detail extends Component {
                     <Col size="md-2">
                             <h3>Read it here: </h3>
                         <Link to="/">
-
+                            Back to Articles
                         </Link>
                     </Col>
                 </Row>
             </Container>
-        )
+        );
     } 
 }
 
