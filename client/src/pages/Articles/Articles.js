@@ -21,9 +21,10 @@ class Articles extends Component {
 	}
 
 	loadArticles = () => {
-		API.getArticles()
+		API.nytSearch()
 			.then(res =>
-				this.setState({ articles: res.data, topic: "", startYear: "", endYear: "" }))
+				this.setState({ articles: res.data, topic: "", startYear: "", endYear: "" })
+			).catch(err => console.log(err));
 	};
 
 	deleteArticle = id => {
@@ -84,9 +85,10 @@ class Articles extends Component {
 							>
 							</Input>
 							<FormBtn
+								type="submit"
 								disabled={!(this.state.topic)}
 								onClick={this.handleFormSubmit}
-								className="search"
+								className="btn search"
 							>
 								Search
               </FormBtn>
