@@ -21,9 +21,9 @@ class Articles extends Component {
 	}
 
 	loadArticles = () => {
-		API.nytSearch()
+		API.nytSearch(this.state.topic, this.state.startYear, this.state.endYear)
 			.then(res =>
-				this.setState({ articles: res.data, topic: "", startYear: "", endYear: "" })
+				this.setState({ articles: res.data.response.docs, topic: "", startYear: "", endYear: "" })
 			).catch(err => console.log(err));
 	};
 
@@ -34,7 +34,7 @@ class Articles extends Component {
 	};
 
 	handleInputChange = event => {
-		const { name, value } = event.target;
+		const { name, value } = event.target.value;
 		this.setState({
 			[name]: value
 		});
