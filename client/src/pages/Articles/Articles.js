@@ -16,14 +16,11 @@ class Articles extends Component {
 		endYear: ""
 	};
 
-	componentDidMount() {
-		this.loadArticles();
-	}
-
-	loadArticles = () => {
+	loadArticles = (e) => {
+		e.preventDefault();
 		API.nytSearch(this.state.topic, this.state.startYear, this.state.endYear)
 			.then(res =>
-				this.setState({ articles: res.data.response.docs, topic: "", startYear: "", endYear: "" })
+				this.setState({ articles: res.data, topic: "", startYear: "", endYear: "" })
 			).catch(err => console.log(err));
 	};
 
@@ -34,7 +31,7 @@ class Articles extends Component {
 	};
 
 	handleInputChange = event => {
-		const { name, value } = event.target.value;
+		const { name, value } = event.target;
 		this.setState({
 			[name]: value
 		});
@@ -42,11 +39,9 @@ class Articles extends Component {
 
 	handleFormSubmit = event => {
 		event.preventDefault();
-		if (this.state.topic && this.state.startYear && this.state.endYear) {
+		if (this.state.topic) {
 			API.saveArticle({
-				topic: this.state.topic,
-				startYear: this.state.startYear,
-				endYear: this.state.endYear
+				topic: this.state.topic
 			})
 				.then(res => this.loadArticles())
 				.catch(err => console.log(err));
@@ -85,9 +80,8 @@ class Articles extends Component {
 							>
 							</Input>
 							<FormBtn
-								type="submit"
 								disabled={!(this.state.topic)}
-								onClick={this.handleFormSubmit}
+								onClick={(e) => this.loadArticles(e)}
 								className="btn search"
 							>
 								Search

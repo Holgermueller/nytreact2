@@ -4,15 +4,8 @@ require("dotenv").config();
 const API = {
 	nytSearch: function(topic, startYear, endYear) {
 		const APIKEY = '4fcc0dafe33644ff9bc6deb8396385e6'
-		if (startYear === "") {
-			startYear = "2018"
-		} if (endYear === "" || Number(endYear) < Number(startYear)){
-			endYear = Number(startYear) + 1
-		}
 		const queryUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + APIKEY + 
-		"&q=" + topic + 
-		"&begin_date=" + startYear + 
-		"&end_date=" + endYear;
+		 "&q=" + topic;
 		return axios.get(queryUrl);
 	},
 	getArticleSaved: function() {
