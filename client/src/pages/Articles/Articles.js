@@ -99,7 +99,17 @@ class Articles extends Component {
 										<div className="col-md-12 headline">
 											{articles.headline.main}
 										</div>
-										<DeleteBtn onClick={() => this.deleteArticle(articles._id)} />
+										<div>
+											{articles.snippet}
+										</div>
+										<div>
+											{articles.pub_date}
+										</div>
+										<div>Read it here: 
+											{articles.web_url}
+										</div>
+										<button className="save-button">SAVE</button>
+										<DeleteBtn onClick={() => this.deleteArticle(articles._id)}>DELETE</DeleteBtn>
 									</ListItem>
 								))}
 							</List>
