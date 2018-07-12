@@ -106,7 +106,7 @@ class Articles extends Component {
 											{articles.pub_date}
 										</div>
 										<div>Read it here: 
-											{articles.web_url}
+											<a href={articles.web_url} target="_blank" >{articles.web_url}</a>
 										</div>
 										<button className="save-button">SAVE</button>
 										<DeleteBtn onClick={() => this.deleteArticle(articles._id)}>DELETE</DeleteBtn>
