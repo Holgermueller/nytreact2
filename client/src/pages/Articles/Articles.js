@@ -48,6 +48,12 @@ class Articles extends Component {
 		}
 	};
 
+	saveArticle = id => {
+		API.saveArticle(id)
+		.then(res => this.loadArticles())
+		.catch(err => console.log(err));
+	};
+
 	render() {
 		return (
 			<Container fluid>
@@ -108,7 +114,7 @@ class Articles extends Component {
 										<div>Read it here: 
 											<a href={articles.web_url} target="_blank" >{articles.web_url}</a>
 										</div>
-										<button className="save-button">SAVE</button>
+										<button className="save-button" onClick={() => this.saveArticle(articles._id)} >SAVE</button>
 										<DeleteBtn onClick={() => this.deleteArticle(articles._id)}>DELETE</DeleteBtn>
 									</ListItem>
 								))}
