@@ -20,7 +20,7 @@ class Articles extends Component {
 		e.preventDefault();
 		API.nytSearch(this.state.topic, this.state.startYear, this.state.endYear)
 			.then(res =>
-				this.setState({ articles: res.data, topic: "", startYear: "", endYear: "" })
+				this.setState({ articles: res.data.response.docs, topic: "", startYear: "", endYear: "" })
 			).catch(err => console.log(err));
 	};
 
@@ -94,14 +94,12 @@ class Articles extends Component {
 						</Jumbotron>
 						{this.state.articles.length ? (
 							<List>
-								{this.state.articles.map(article => (
-									<ListItem key={article._id}>
-										<Link to={"/articles/" + article._id}>
-											<strong>
-												{article.title} by {article.date}
-											</strong>
-										</Link>
-										<DeleteBtn onClick={() => this.deleteArticle(article._id)} />
+								{this.state.articles.map(articles => (
+									<ListItem key={articles._id} id={articles._id}>
+										<div className="col-md-12 headline">
+											{articles.headline.main}
+										</div>
+										<DeleteBtn onClick={() => this.deleteArticle(articles._id)} />
 									</ListItem>
 								))}
 							</List>

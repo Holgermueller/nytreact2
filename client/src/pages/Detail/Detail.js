@@ -22,7 +22,7 @@ class Detail extends Component {
                     <Col size="md-12">
                         <Jumbotron>
                             <h1>
-                                {this.state.article.title}
+                                {this.state.article.headline}
                             </h1>
                         </Jumbotron>
                     </Col>
@@ -30,7 +30,7 @@ class Detail extends Component {
                 <Row>
                     <Col size="md-10 md-offset-1">
                         <article>
-                            {this.state.article.date}
+                            {this.state.article.pub_date}
                         </article>
                     </Col>
                 </Row>
