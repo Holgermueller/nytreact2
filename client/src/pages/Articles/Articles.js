@@ -48,9 +48,28 @@ class Articles extends Component {
 	};
 
 	saveArticle = id => {
-		API.saveArticle(id.body)
-		.then(res => this.loadArticles())
-		.catch(err => console.log(err));
+		this.state.articles.forEach(elem => {
+			console.log(elem);
+			if (elem._id === id.target) {
+				API.saveArticle({
+					headline: elem.headline.main,
+					web_url: elem.web_url,
+					snippet: elem.snippet,
+					pub_date: elem.pub_date
+				}).then(res => {
+					this.state.savedArticles.push(res.articleData);
+					this.loadSavedArticles();
+				})
+					.catch(err => console.log(err));
+			}
+		})
+	};
+
+	loadSavedArticles = () => {
+		API.getArticleSaved()
+			.then(res => {
+				this.setState({ savedArticles: res.data })
+			}).catch(err => console.log(err))
 	};
 
 	render() {
@@ -99,22 +118,22 @@ class Articles extends Component {
 						</Jumbotron>
 						{this.state.articles.length ? (
 							<List>
-								{this.state.articles.map(articles => (
-									<ListItem key={articles._id} id={articles._id}>
+								{this.state.articles.map(article => (
+									<ListItem key={article._id} id={article._id}>
 										<div className="col-md-12 headline">
-											{articles.headline.main}
+											{article.headline.main}
 										</div>
 										<div>
-											{articles.snippet}
+											{article.snippet}
 										</div>
 										<div>
-											{articles.pub_date}
+											{article.pub_date}
 										</div>
-										<div>Read it here: 
-											<a href={articles.web_url} target="_blank" >{articles.web_url}</a>
+										<div>Read it here:
+											<a href={article.web_url} target="_blank" >{article.web_url}</a>
 										</div>
-										<button className="save-button" onClick={() => this.saveArticle(articles._id)}>SAVE</button>
-										<DeleteBtn onClick={() => this.deleteArticle(articles._id)}>DELETE</DeleteBtn>
+										<button className="save-button" onClick={() => this.saveArticle(article)}>SAVE</button>
+										<DeleteBtn onClick={() => this.deleteArticle(article)}>DELETE</DeleteBtn>
 									</ListItem>
 								))}
 							</List>
