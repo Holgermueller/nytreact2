@@ -11,14 +11,25 @@ const API = {
       topic;
     return axios.get(queryUrl);
   },
+
   getArticleSaved: function() {
     return axios.get("/api/articles");
   },
+
   deleteArticle: function(id) {
-    return axios.delete("/api/articles" + id);
+    return axios.delete("/api/articles/" + id);
   },
+
   saveArticle: function(articleData) {
-    return axios.post("/api/articles", articleData);
+    return axios.put("/api/articles", articleData);
+  },
+
+  getOneArticle: function(id){
+    return axios.get("/api/articles/" + id);
+  },
+
+  getAllSavedArticles: function() {
+    return axios.get("/api/articles")
   }
 };
 
