@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DeleteBtn from "../../components/DeleteBtn";
+// import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
@@ -7,13 +7,16 @@ import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import "./Article.css";
 
-class Articles extends Component {
-  state = {
-    articles: [],
-    topic: "",
-    startYear: "",
-    endYear: ""
-  };
+export default class Articles extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      articles: [],
+      topic: "",
+      startYear: "",
+      endYear: ""
+    };
+  }
 
   loadArticles = e => {
     e.preventDefault();
@@ -53,15 +56,16 @@ class Articles extends Component {
     }
   };
 
-  saveArticle = id => {
-    this.state.articles.forEach(elem => {
-      console.log(elem);
-      if (elem._id === id.target) {
+  saveArticle = e => {
+    e.preventDefault();
+    this.state.articles.forEach(article => {
+      console.log(article);
+      if (article._id === e.target.id) {
         API.saveArticle({
-          headline: elem.headline.main,
-          web_url: elem.web_url,
-          snippet: elem.snippet,
-          pub_date: elem.pub_date
+          headline: article.headline.main,
+          web_url: article.web_url,
+          snippet: article.snippet,
+          pub_date: article.pub_date
         })
           .then(res => {
             this.state.savedArticles.push(res.articleData);
@@ -87,7 +91,7 @@ class Articles extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>NY Times MERN</h1>
-              <h3>Search articles to your heart's content!</h3>
+              <h3>Search NY Times articles to your heart's content!</h3>
             </Jumbotron>
             <form>
               <Input
@@ -130,21 +134,22 @@ class Articles extends Component {
                     </div>
                     <div>{article.snippet}</div>
                     <div>{article.pub_date}</div>
-                    <div>
-                      Read it here:
+                    <button>
+                      Read it here =>
                       <a href={article.web_url} target="_blank">
                         {article.web_url}
                       </a>
-                    </div>
+                    </button>
                     <button
+                      id={article.id}
                       className="save-button"
-                      onClick={() => this.saveArticle(article)}
+                      onClick={this.saveArticle}
                     >
                       SAVE
                     </button>
-                    <DeleteBtn onClick={() => this.deleteArticle(article)}>
-                      DELETE
-                    </DeleteBtn>
+                    {/* <DeleteBtn onClick={() => this.deleteArticle(article)}>
+                      DELETE //Move to list of saved articles!!
+                    </DeleteBtn> */}
                   </ListItem>
                 ))}
               </List>
@@ -157,5 +162,3 @@ class Articles extends Component {
     );
   }
 }
-
-export default Articles;

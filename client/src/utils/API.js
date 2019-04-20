@@ -1,10 +1,8 @@
 import axios from "axios";
-require("dotenv").config();
 
 const API = {
   nytSearch: function(topic, startYear, endYear) {
-    const APIKEY = process.env.REACT_APP_APIKEY;
-    console.log(process.env.REACT_APP_APIKEY);
+    const APIKEY = "GOQZtddsgF2XHczhw8FxoNiAArFkNS6z";
     const queryUrl =
       "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" +
       APIKEY +
@@ -22,7 +20,8 @@ const API = {
   },
 
   saveArticle: function(articleData) {
-    return axios.put("/api/articles", articleData);
+    console.log(articleData)
+    return axios.post("/api/articles", articleData);
   },
 
   getOneArticle: function(id) {
