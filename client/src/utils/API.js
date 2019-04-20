@@ -3,7 +3,8 @@ require("dotenv").config();
 
 const API = {
   nytSearch: function(topic, startYear, endYear) {
-    const APIKEY = "4fcc0dafe33644ff9bc6deb8396385e6";
+    const APIKEY = process.env.REACT_APP_APIKEY;
+    console.log(process.env.REACT_APP_APIKEY);
     const queryUrl =
       "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" +
       APIKEY +
@@ -24,12 +25,12 @@ const API = {
     return axios.put("/api/articles", articleData);
   },
 
-  getOneArticle: function(id){
+  getOneArticle: function(id) {
     return axios.get("/api/articles/" + id);
   },
 
   getAllSavedArticles: function() {
-    return axios.get("/api/articles")
+    return axios.get("/api/articles");
   }
 };
 
