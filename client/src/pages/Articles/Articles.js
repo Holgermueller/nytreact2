@@ -16,6 +16,9 @@ export default class Articles extends Component {
       startYear: "",
       endYear: ""
     };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   loadArticles = e => {
@@ -32,11 +35,11 @@ export default class Articles extends Component {
       .catch(err => console.log(err));
   };
 
-  deleteArticle = id => {
-    API.deleteArticle(id)
-      .then(res => this.loadArticles())
-      .catch(err => console.log(err));
-  };
+  // deleteArticle = id => {
+  //   API.deleteArticle(id)
+  //     .then(res => this.loadArticles())
+  //     .catch(err => console.log(err));
+  // };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -59,8 +62,10 @@ export default class Articles extends Component {
   saveArticle = e => {
     e.preventDefault();
     this.state.articles.forEach(article => {
-      console.log(article);
+      // console.log(article);
       if (article._id === e.target.id) {
+        console.log(article._id)
+        console.log(e.target.id)
         API.saveArticle({
           headline: article.headline.main,
           web_url: article.web_url,
@@ -68,6 +73,7 @@ export default class Articles extends Component {
           pub_date: article.pub_date
         })
           .then(res => {
+            console.log(res)
             this.state.savedArticles.push(res.articleData);
             this.loadSavedArticles();
           })
@@ -141,13 +147,13 @@ export default class Articles extends Component {
                       </a>
                     </button>
                     <button
-                      id={article.id}
+                      id={article._id}
                       className="save-button"
                       onClick={this.saveArticle}
                     >
                       SAVE
                     </button>
-                    {/* <DeleteBtn onClick={() => this.deleteArticle(article)}>
+                    {/* <DeleteBtn onClick={this.deleteArticle}>
                       DELETE //Move to list of saved articles!!
                     </DeleteBtn> */}
                   </ListItem>

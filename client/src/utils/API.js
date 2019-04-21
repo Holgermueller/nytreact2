@@ -11,10 +11,6 @@ const API = {
     return axios.get(queryUrl);
   },
 
-  getArticleSaved: function() {
-    return axios.get("/api/articles");
-  },
-
   deleteArticle: function(id) {
     return axios.delete("/api/articles/" + id);
   },
@@ -22,10 +18,6 @@ const API = {
   saveArticle: function(articleData) {
     console.log(articleData)
     return axios.post("/api/articles", articleData);
-  },
-
-  getOneArticle: function(id) {
-    return axios.get("/api/articles/" + id);
   },
 
   getAllSavedArticles: function() {
