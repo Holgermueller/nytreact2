@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "npm run build"
   },
-  "author": "",
+  "author": "Holger Mueller",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",

@@ -62,10 +62,9 @@ export default class Articles extends Component {
   saveArticle = e => {
     e.preventDefault();
     this.state.articles.forEach(article => {
-      // console.log(article);
       if (article._id === e.target.id) {
-        console.log(article._id)
-        console.log(e.target.id)
+        console.log(article._id);
+        console.log(e.target.id);
         API.saveArticle({
           headline: article.headline.main,
           web_url: article.web_url,
@@ -73,7 +72,7 @@ export default class Articles extends Component {
           pub_date: article.pub_date
         })
           .then(res => {
-            console.log(res)
+            console.log(res);
             this.state.savedArticles.push(res.articleData);
             this.loadSavedArticles();
           })
@@ -141,9 +140,8 @@ export default class Articles extends Component {
                     <div>{article.snippet}</div>
                     <div>{article.pub_date}</div>
                     <button>
-                      Read it here =>
                       <a href={article.web_url} target="_blank">
-                        {article.web_url}
+                        Read it here =>
                       </a>
                     </button>
                     <button

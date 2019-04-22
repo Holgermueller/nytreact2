@@ -24,7 +24,7 @@ app.use("/", routes);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  process.env.MONGOD_URI || "mongodb://localhost:27017/articlesDatabase",
+  process.env.MONGOD_URI || "mongodb://localhost:27017/NYTarticlesDatabase",
   { useNewUrlParser: true }
 );
 const connection = mongoose.connection;
