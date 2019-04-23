@@ -12,6 +12,7 @@ export default class Articles extends Component {
     super(props);
     this.state = {
       articles: [],
+      savedArticles: [],
       topic: "",
       startYear: "",
       endYear: ""
@@ -21,8 +22,7 @@ export default class Articles extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  loadArticles = e => {
-    e.preventDefault();
+  loadArticleSearch = () => {
     API.nytSearch(this.state.topic, this.state.startYear, this.state.endYear)
       .then(res =>
         this.setState({
@@ -35,13 +35,8 @@ export default class Articles extends Component {
       .catch(err => console.log(err));
   };
 
-  // deleteArticle = id => {
-  //   API.deleteArticle(id)
-  //     .then(res => this.loadArticles())
-  //     .catch(err => console.log(err));
-  // };
-
   handleInputChange = event => {
+    event.preventDefault();
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -50,21 +45,14 @@ export default class Articles extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.topic) {
-      API.saveArticle({
-        topic: this.state.topic
-      })
-        .then(res => this.loadArticles())
-        .catch(err => console.log(err));
-    }
+    this.setState({ articles: [] });
+    this.loadArticleSearch();
   };
 
   saveArticle = e => {
     e.preventDefault();
     this.state.articles.forEach(article => {
       if (article._id === e.target.id) {
-        console.log(article._id);
-        console.log(e.target.id);
         API.saveArticle({
           headline: article.headline.main,
           web_url: article.web_url,
@@ -74,20 +62,31 @@ export default class Articles extends Component {
           .then(res => {
             console.log(res);
             this.state.savedArticles.push(res.articleData);
-            this.loadSavedArticles();
+            //this.loadSavedArticles();
           })
           .catch(err => console.log(err));
       }
     });
   };
 
-  loadSavedArticles = () => {
-    API.getArticleSaved()
-      .then(res => {
-        this.setState({ savedArticles: res.data });
-      })
-      .catch(err => console.log(err));
-  };
+  // loadSavedArticles = () => {
+  //   API.getAllSavedArticles()
+  //     .then(res => {
+  //      console.log(res);
+  //       this.setState({ savedArticles: res.data });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
+  // componentDidMount() {
+  //   this.loadSavedArticles();
+  // }
+
+  // deleteArticle = id => {
+  //   API.deleteArticle(id)
+  //     .then(res => this.loadArticles())
+  //     .catch(err => console.log(err));
+  // };
 
   render() {
     return (
@@ -119,7 +118,7 @@ export default class Articles extends Component {
               />
               <FormBtn
                 disabled={!this.state.topic}
-                onClick={e => this.loadArticles(e)}
+                onClick={this.handleFormSubmit}
                 className="btn search"
               >
                 Search

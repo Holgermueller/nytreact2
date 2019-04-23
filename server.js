@@ -3,13 +3,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
-const morgan = require("morgan");
 const path = require("path");
 const cors = require("cors");
 const compression = require("compression");
 const PORT = process.env.PORT || 3001;
-
-app.use(morgan("tiny"));
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +21,7 @@ app.use("/", routes);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  process.env.MONGOD_URI || "mongodb://localhost:27017/NYTarticlesDatabase",
+  process.env.MONGODB_URI || "mongodb://localhost:27017/NYTarticlesDatabase",
   { useNewUrlParser: true }
 );
 const connection = mongoose.connection;
