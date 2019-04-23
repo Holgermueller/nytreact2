@@ -60,23 +60,23 @@ export default class Articles extends Component {
           pub_date: article.pub_date
         })
           .then(res => {
-            console.log(res);
-            this.state.savedArticles.push(res.articleData);
-            //this.loadSavedArticles();
+            console.log(res.data);
+            this.state.savedArticles.push(res.data);
+            this.loadSavedArticles();
           })
           .catch(err => console.log(err));
       }
     });
   };
 
-  // loadSavedArticles = () => {
-  //   API.getAllSavedArticles()
-  //     .then(res => {
-  //      console.log(res);
-  //       this.setState({ savedArticles: res.data });
-  //     })
-  //     .catch(err => console.log(err));
-  // };
+  loadSavedArticles = () => {
+    API.getAllSavedArticles()
+      .then(res => {
+        console.log(res);
+        this.setState({ savedArticles: res.data });
+      })
+      .catch(err => console.log(err));
+  };
 
   // componentDidMount() {
   //   this.loadSavedArticles();
