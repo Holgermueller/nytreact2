@@ -6,13 +6,13 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import "./Article.css";
+import SavedArticles from "../../components/SavedArticles/SavedArticles"
 
 export default class Articles extends Component {
   constructor(props) {
     super(props);
     this.state = {
       articles: [],
-      savedArticles: [],
       topic: "",
       startYear: "",
       endYear: ""
@@ -60,7 +60,6 @@ export default class Articles extends Component {
           pub_date: article.pub_date
         })
           .then(res => {
-            console.log(res.data);
             this.state.savedArticles.push(res.data);
             this.loadSavedArticles();
           })
@@ -68,19 +67,6 @@ export default class Articles extends Component {
       }
     });
   };
-
-  loadSavedArticles = () => {
-    API.getAllSavedArticles()
-      .then(res => {
-        console.log(res);
-        this.setState({ savedArticles: res.data });
-      })
-      .catch(err => console.log(err));
-  };
-
-  // componentDidMount() {
-  //   this.loadSavedArticles();
-  // }
 
   // deleteArticle = id => {
   //   API.deleteArticle(id)
@@ -161,6 +147,10 @@ export default class Articles extends Component {
             )}
           </Col>
         </Row>
+        <p>Saved Articles</p>
+        <ul>
+            <SavedArticles/>
+          </ul>
       </Container>
     );
   }
