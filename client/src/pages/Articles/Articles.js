@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-// import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import "./Article.css";
-import SavedArticles from "../../components/SavedArticles/SavedArticles"
+import SavedArticles from "../../components/SavedArticles/SavedArticles";
 
 export default class Articles extends Component {
   constructor(props) {
@@ -147,10 +146,7 @@ export default class Articles extends Component {
             )}
           </Col>
         </Row>
-        <p>Saved Articles</p>
-        <ul>
-            <SavedArticles/>
-          </ul>
+        <SavedArticles />
       </Container>
     );
   }

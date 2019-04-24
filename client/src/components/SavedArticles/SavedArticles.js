@@ -1,11 +1,28 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import Card from "@material-ui/core/Card"
+import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
+import DeleteButton from "../DeleteBtn";
 
 const ArticleFromDatabse = props => (
-  <li>
+  <Card>
     <p>{props.articleFromDatabase.headline}</p>
-  </li>
+  </Card>
 );
+
+const headerContainer = {
+  width: "fit-content",
+  marginLeft: "auto",
+  marginRight: "auto",
+  backgroundColor: "#000000",
+}
+
+const headerStyles = {
+  textAlign: "center",
+  padding: "5px 10px",
+  color: "#FFFAFA",
+}
 
 export default class SavedArticles extends Component {
   constructor(props) {
@@ -36,7 +53,17 @@ export default class SavedArticles extends Component {
   render() {
     return (
       <div>
-        <ul>{this.loadSavedArticles()}</ul>
+        <Card style={headerContainer}>
+          <Typography variant="h4" style={headerStyles}>
+          Your Saved Articles:
+          </Typography>
+        </Card>
+        <br />
+        <div>
+          <Grid>
+{this.loadSavedArticles()}
+          </Grid>
+        </div>
       </div>
     );
   }
