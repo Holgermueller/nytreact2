@@ -3,14 +3,24 @@ import API from "../../utils/API";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import DeleteDialogue from "../DeleteDialog";
+import DeleteDialogue from "../../components/DeleteDialog";
+import { Link } from "react-router-dom";
 
 const ArticleFromDatabse = props => (
   <Card>
     <p>{props.articleFromDatabase.headline}</p>
-    <DeleteDialogue {...props} />
+    <DeleteDialogue {...this.props} />
   </Card>
 );
+
+const linkStyles = {
+  textDecoration: "none",
+}
+
+const linkCard = {
+  width: "fit-content",
+  padding: "4px",
+}
 
 const headerContainer = {
   width: "fit-content",
@@ -54,6 +64,10 @@ export default class SavedArticles extends Component {
   render() {
     return (
       <div>
+        <Link to="/"
+        style={linkStyles}>
+          <Card style={linkCard}>BACK</Card>
+        </Link>
         <Card style={headerContainer}>
           <Typography variant="h4" style={headerStyles}>
             Your Saved Articles:

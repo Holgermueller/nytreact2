@@ -5,7 +5,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import "./Article.css";
-import SavedArticles from "../../components/SavedArticles/SavedArticles";
+import { Link } from "react-router-dom";
 
 export default class Articles extends Component {
   constructor(props) {
@@ -59,10 +59,11 @@ export default class Articles extends Component {
           pub_date: article.pub_date
         })
           .then(res => {
-            this.state.savedArticles.push(res.data);
-            this.loadSavedArticles();
+            console.log(res.data);
           })
           .catch(err => console.log(err));
+
+          this.props.history.push("/articles")
       }
     });
   };
@@ -70,6 +71,7 @@ export default class Articles extends Component {
   render() {
     return (
       <Container fluid>
+        <Link to="/articles">Your Saved Articles =></Link>
         <Row>
           <Col size="md-6">
             <Jumbotron>
@@ -137,7 +139,6 @@ export default class Articles extends Component {
             )}
           </Col>
         </Row>
-        <SavedArticles />
       </Container>
     );
   }
