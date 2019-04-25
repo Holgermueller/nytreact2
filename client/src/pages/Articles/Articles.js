@@ -6,7 +6,7 @@ import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import "./Article.css";
 import { Link } from "react-router-dom";
-
+import SearchHeader from "../../components/PageHeaders/SearchHeader";
 export default class Articles extends Component {
   constructor(props) {
     super(props);
@@ -62,8 +62,7 @@ export default class Articles extends Component {
             console.log(res.data);
           })
           .catch(err => console.log(err));
-
-          this.props.history.push("/articles")
+        this.props.history.push("/articles");
       }
     });
   };
@@ -73,11 +72,8 @@ export default class Articles extends Component {
       <Container fluid>
         <Link to="/articles">Your Saved Articles =></Link>
         <Row>
+          <SearchHeader />
           <Col size="md-6">
-            <Jumbotron>
-              <h1>NY Times MERN</h1>
-              <h3>Search NY Times articles to your heart's content!</h3>
-            </Jumbotron>
             <form>
               <Input
                 value={this.state.topic}

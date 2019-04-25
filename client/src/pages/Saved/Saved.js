@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import DeleteDialogue from "../../components/DeleteDialog";
+import SavedHeader from "../../components/PageHeaders/SavedHeader";
 import { Link } from "react-router-dom";
 
 const ArticleFromDatabse = props => (
@@ -14,25 +14,12 @@ const ArticleFromDatabse = props => (
 );
 
 const linkStyles = {
-  textDecoration: "none",
-}
+  textDecoration: "none"
+};
 
 const linkCard = {
   width: "fit-content",
-  padding: "4px",
-}
-
-const headerContainer = {
-  width: "fit-content",
-  marginLeft: "auto",
-  marginRight: "auto",
-  backgroundColor: "#000000"
-};
-
-const headerStyles = {
-  textAlign: "center",
-  padding: "5px 10px",
-  color: "#FFFAFA"
+  padding: "4px"
 };
 
 export default class SavedArticles extends Component {
@@ -64,15 +51,10 @@ export default class SavedArticles extends Component {
   render() {
     return (
       <div>
-        <Link to="/"
-        style={linkStyles}>
+        <Link to="/" style={linkStyles}>
           <Card style={linkCard}>BACK</Card>
         </Link>
-        <Card style={headerContainer}>
-          <Typography variant="h4" style={headerStyles}>
-            Your Saved Articles:
-          </Typography>
-        </Card>
+        <SavedHeader />
         <br />
         <div>
           <Grid>{this.loadSavedArticles()}</Grid>
