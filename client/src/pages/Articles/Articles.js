@@ -67,12 +67,6 @@ export default class Articles extends Component {
     });
   };
 
-  // deleteArticle = id => {
-  //   API.deleteArticle(id)
-  //     .then(res => this.loadArticles())
-  //     .catch(err => console.log(err));
-  // };
-
   render() {
     return (
       <Container fluid>
@@ -135,9 +129,6 @@ export default class Articles extends Component {
                     >
                       SAVE
                     </button>
-                    {/* <DeleteBtn onClick={this.deleteArticle}>
-                      DELETE //Move to list of saved articles!!
-                    </DeleteBtn> */}
                   </ListItem>
                 ))}
               </List>

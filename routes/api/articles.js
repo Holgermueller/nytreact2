@@ -1,13 +1,11 @@
 const router = require("express").Router();
 const articleController = require("../../controllers/articleController");
 
-//for all articles
 router
   .route("/")
   .get(articleController.findAll)
   .post(articleController.create);
 
-//for individual aritlces
 router
   .route("/:id")
   .get(articleController.findById)
