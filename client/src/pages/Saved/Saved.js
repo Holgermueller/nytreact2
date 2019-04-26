@@ -3,24 +3,19 @@ import API from "../../utils/API";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import DeleteDialogue from "../../components/DeleteDialog";
-import SavedHeader from "../../components/PageHeaders/SavedHeader";
-import { Link } from "react-router-dom";
+import SavedHeader from "../../components/Headers/SavedHeader";
+import HomeLink from "../../components/Links/HomeLink";
+
+const savedArticleCard = {
+  margin: "1px auto 1px auto"
+};
 
 const ArticleFromDatabse = props => (
-  <Card>
+  <Card style={savedArticleCard}>
     <p>{props.articleFromDatabase.headline}</p>
     <DeleteDialogue {...this.props} />
   </Card>
 );
-
-const linkStyles = {
-  textDecoration: "none"
-};
-
-const linkCard = {
-  width: "fit-content",
-  padding: "4px"
-};
 
 export default class SavedArticles extends Component {
   constructor(props) {
@@ -51,14 +46,12 @@ export default class SavedArticles extends Component {
   render() {
     return (
       <div>
-        <Link to="/" style={linkStyles}>
-          <Card style={linkCard}>BACK</Card>
-        </Link>
         <SavedHeader />
         <br />
         <div>
           <Grid>{this.loadSavedArticles()}</Grid>
         </div>
+        <HomeLink />
       </div>
     );
   }

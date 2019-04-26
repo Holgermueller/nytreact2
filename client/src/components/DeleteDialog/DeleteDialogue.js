@@ -32,6 +32,8 @@ export default class DeleteAlertDialogue extends React.Component {
     API.deleteArticle(this.props.match.params.id)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
+
+    this.props.history.push("/articles");
   };
 
   render() {

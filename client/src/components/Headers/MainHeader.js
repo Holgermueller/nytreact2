@@ -5,7 +5,7 @@ import Divider from "@material-ui/core/Divider";
 
 const headerCard = {
   width: "fit-content",
-  margin: "0 auto",
+  margin: "0 auto 4px auto",
   padding: "4px",
 };
 
@@ -18,7 +18,7 @@ const subHeader = {
   textAlign: "center",
 };
 
-export default class AppHeader extends Component {
+export default class MainHeader extends Component {
   render() {
     return (
       <div>

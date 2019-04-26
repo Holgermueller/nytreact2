@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import "./Article.css";
-import { Link } from "react-router-dom";
-import SearchHeader from "../../components/PageHeaders/SearchHeader";
+import SearchHeader from "../../components/Headers/SearchHeader";
+import SavedLink from "../../components/Links/SavedLink";
+import ResultsHeader from "../../components/Headers/ResultsHeader";
+
 export default class Articles extends Component {
   constructor(props) {
     super(props);
@@ -70,7 +71,6 @@ export default class Articles extends Component {
   render() {
     return (
       <Container fluid>
-        <Link to="/articles">Your Saved Articles =></Link>
         <Row>
           <SearchHeader />
           <Col size="md-6">
@@ -103,9 +103,7 @@ export default class Articles extends Component {
             </form>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Here are your articles!</h1>
-            </Jumbotron>
+            <ResultsHeader />
             {this.state.articles.length ? (
               <List>
                 {this.state.articles.map(article => (
@@ -135,6 +133,7 @@ export default class Articles extends Component {
             )}
           </Col>
         </Row>
+        <SavedLink />
       </Container>
     );
   }
