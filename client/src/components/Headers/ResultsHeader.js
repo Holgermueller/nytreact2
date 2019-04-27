@@ -1,4 +1,4 @@
-import React, { Compontent } from "react";
+import React, { Component } from "react";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 
@@ -11,12 +11,12 @@ const headerText = {
   padding: "6px"
 };
 
-export default class ResultsHeader extends Compontent {
+export default class ResultsHeader extends Component {
   render() {
     return (
       <div>
         <Card style={cardStyles}>
-          <Typography class={headerText}>Here are your articles!</Typography>
+          <Typography style={headerText}>Here are your articles!</Typography>
         </Card>
       </div>
     );
