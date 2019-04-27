@@ -7,12 +7,21 @@ import SavedHeader from "../../components/Headers/SavedHeader";
 import HomeLink from "../../components/Links/HomeLink";
 
 const savedArticleCard = {
-  margin: "1px auto 1px auto"
+  margin: "2px auto 2px auto",
+  width: "55%",
+  minHeight: "250px",
+  textAlign: "center"
 };
 
 const ArticleFromDatabse = props => (
-  <Card style={savedArticleCard}>
+  <Card
+    style={savedArticleCard}
+    key={props.articleFromDatabase.id}
+    _id={props.articleFromDatabase.id}
+  >
     <p>{props.articleFromDatabase.headline}</p>
+    <p>{props.articleFromDatabase.snippet}</p>
+    <p>{props.articleFromDatabase.web_url}</p>
     <DeleteDialogue {...this.props} />
   </Card>
 );

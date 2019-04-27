@@ -29,11 +29,12 @@ export default class DeleteAlertDialogue extends React.Component {
   };
 
   handleDelete = id => {
-    API.deleteArticle(this.props.match.params.id)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+    console.log(this.props)
+    // API.deleteArticle(this.props.match.params.id)
+    //   .then(res => console.log(res.data))
+    //   .catch(err => console.log(err));
 
-    this.props.history.push("/articles");
+    // this.props.history.push("/articles");
   };
 
   render() {

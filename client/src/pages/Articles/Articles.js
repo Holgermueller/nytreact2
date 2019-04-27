@@ -63,7 +63,7 @@ export default class Articles extends Component {
             console.log(res.data);
           })
           .catch(err => console.log(err));
-        this.props.history.push("/articles");
+        this.props.history.push("/saved");
       }
     });
   };

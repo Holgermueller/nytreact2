@@ -3,7 +3,8 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 
 const cardStyles = {
-  margin: "2px auto"
+  margin: "4px auto",
+  width: "fit-content"
 };
 
 const headerText = {
@@ -16,7 +17,9 @@ export default class ResultsHeader extends Component {
     return (
       <div>
         <Card style={cardStyles}>
-          <Typography style={headerText}>Here are your articles!</Typography>
+          <Typography style={headerText} variant="h3">
+            Here are your articles!
+          </Typography>
         </Card>
       </div>
     );

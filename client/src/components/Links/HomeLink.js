@@ -13,7 +13,7 @@ const linkCard = {
 }
 
 const linkName = {
-  padding: "2px"
+  padding: "4px"
 }
 
 export default class HomeLink extends Component {

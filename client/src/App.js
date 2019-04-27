@@ -4,6 +4,7 @@ import Articles from "./pages/Articles";
 import Saved from "./pages/Saved";
 import NoMatch from "./pages/NoMatch";
 import MainHeader from "./components/Headers/MainHeader";
+import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 const App = () => (
@@ -15,6 +16,7 @@ const App = () => (
         <Route exact path="/saved" component={Saved} />
         <Route component={NoMatch} />
       </Switch>
+      <Footer />
     </div>
   </Router>
 );
