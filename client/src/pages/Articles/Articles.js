@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import "./Article.css";
 import SearchHeader from "../../components/Headers/SearchHeader";
 import SavedLink from "../../components/Links/SavedLink";
 import ResultsHeader from "../../components/Headers/ResultsHeader";
+import Card from "@material-ui/core/Card";
+import Divider from "@material-ui/core/Divider";
+import Typography from "@material-ui/core/Typography";
+
+const linkStyles = {
+  textDecoration: "none"
+};
 
 export default class Articles extends Component {
   constructor(props) {
@@ -70,71 +76,87 @@ export default class Articles extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <SearchHeader />
-          <Col size="md-6">
-            <form>
-              <Input
-                value={this.state.topic}
-                onChange={this.handleInputChange}
-                name="topic"
-                placeholder="Topic (required)"
-              />
-              <Input
-                value={this.state.startYear}
-                onChange={this.handleInputChange}
-                name="startYear"
-                placeholder="Start Year (optional)"
-              />
-              <Input
-                value={this.state.endYear}
-                onChange={this.handleInputChange}
-                name="endYear"
-                placeholder="End Year (optional)"
-              />
-              <FormBtn
-                disabled={!this.state.topic}
-                onClick={this.handleFormSubmit}
-                className="btn search"
-              >
-                Search
-              </FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <ResultsHeader />
-            {this.state.articles.length ? (
-              <List>
-                {this.state.articles.map(article => (
-                  <ListItem key={article._id} id={article._id}>
-                    <div className="col-md-12 headline">
-                      {article.headline.main}
-                    </div>
-                    <div>{article.snippet}</div>
-                    <div>{article.pub_date}</div>
-                    <button>
-                      <a href={article.web_url} target="_blank">
-                        Read it here =>
-                      </a>
-                    </button>
-                    <button
-                      id={article._id}
-                      className="save-button"
-                      onClick={this.saveArticle}
+      <div>
+        <SearchHeader />
+        <form>
+          <Input
+            value={this.state.topic}
+            onChange={this.handleInputChange}
+            name="topic"
+            placeholder="Topic (required)"
+          />
+          <Input
+            value={this.state.startYear}
+            onChange={this.handleInputChange}
+            name="startYear"
+            placeholder="Start Year (optional)"
+          />
+          <Input
+            value={this.state.endYear}
+            onChange={this.handleInputChange}
+            name="endYear"
+            placeholder="End Year (optional)"
+          />
+          <FormBtn
+            disabled={!this.state.topic}
+            onClick={this.handleFormSubmit}
+            className="btn search"
+          >
+            Search
+          </FormBtn>
+        </form>
+
+        <ResultsHeader />
+
+        {this.state.articles.length ? (
+          <Card>
+            <List>
+              {this.state.articles.map(article => (
+                <ListItem key={article._id} id={article._id}>
+                  <Typography variant="h6">{article.headline.main}</Typography>
+                  <Divider variant="middle" />
+                  <div>{article.snippet}</div>
+                  <div>{article.pub_date}</div>
+                  <button>
+                    <a
+                      href={article.web_url}
+                      target="_blank"
+                      style={linkStyles}
                     >
-                      SAVE
-                    </button>
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3 className="place-holder">No Results to Display</h3>
-            )}
-          </Col>
-        </Row>
+                      READ IT HERE
+                    </a>
+                  </button>
+                  <button
+                    id={article._id}
+                    className="save-button"
+                    onClick={this.saveArticle}
+                  >
+                    SAVE
+                  </button>
+                </ListItem>
+              ))}
+            </List>
+          </Card>
+        ) : (
+          <Card
+            style={{
+              textAlign: "center",
+              backgroundColor: "blue",
+              width: "fit-content",
+              margin: "5px auto",
+              padding: "5px auto"
+            }}
+          >
+            <Typography
+              variant="h5"
+              style={{ color: "ghostwhite", padding: "5px" }}
+            >
+              No Results to Display
+            </Typography>
+          </Card>
+        )}
         <SavedLink />
-      </Container>
+      </div>
     );
   }
 }

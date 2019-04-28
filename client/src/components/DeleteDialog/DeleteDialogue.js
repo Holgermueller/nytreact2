@@ -9,7 +9,11 @@ import Slide from "@material-ui/core/Slide";
 import Divider from "@material-ui/core/Divider";
 import API from "../../utils/API";
 
-const deleteButton = {};
+const deleteButton = {
+  backgroundColor: "red",
+  margin: "4px",
+  textAlign: "center"
+};
 
 function Transition(props) {
   return <Slide direction="right" {...props} />;

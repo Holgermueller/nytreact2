@@ -2,15 +2,28 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
 import DeleteDialogue from "../../components/DeleteDialog";
 import SavedHeader from "../../components/Headers/SavedHeader";
 import HomeLink from "../../components/Links/HomeLink";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
 const savedArticleCard = {
-  margin: "2px auto 2px auto",
+  margin: "4px auto 4px auto",
   width: "55%",
-  minHeight: "250px",
+  minHeight: "150px",
   textAlign: "center"
+};
+
+const linkStyles = {
+  textDecortaion: "none"
+};
+
+const buttonStyles = {
+  backgroundColor: "blue",
+  color: "ghostwhite",
+  margin: "4px"
 };
 
 const ArticleFromDatabse = props => (
@@ -19,9 +32,12 @@ const ArticleFromDatabse = props => (
     key={props.articleFromDatabase.id}
     _id={props.articleFromDatabase.id}
   >
-    <p>{props.articleFromDatabase.headline}</p>
-    <p>{props.articleFromDatabase.snippet}</p>
-    <p>{props.articleFromDatabase.web_url}</p>
+    <Typography variant="h5">{props.articleFromDatabase.headline}</Typography>
+    <Divider variant="middle" />
+    <Typography>{props.articleFromDatabase.snippet}</Typography>
+    <a href={props.articleFromDatabase.web_url} style={linkStyles}>
+      <Button style={buttonStyles}>READ IT</Button>
+    </a>
     <DeleteDialogue {...this.props} />
   </Card>
 );
