@@ -9,11 +9,14 @@ const linkStyles = {
 
 const linkCard = {
   width: "fit-content",
-  margin: "0 auto",
+  margin: "8px auto",
+  backgroundColor: "blue",
+  
 }
 
 const linkName = {
   padding: "4px",
+  color: "ghostwhite"
 }
 
 export default class SavedLink extends Component {

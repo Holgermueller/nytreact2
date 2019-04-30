@@ -10,10 +10,12 @@ const linkStyles = {
 const linkCard = {
   margin: "2px auto 0 auto",
   width: "fit-content",
+  backgroundColor: "blue"
 }
 
 const linkName = {
-  padding: "4px"
+  padding: "4px",
+  color: "ghostwhite"
 }
 
 export default class HomeLink extends Component {

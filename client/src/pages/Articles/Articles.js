@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import "./Article.css";
 import SearchHeader from "../../components/Headers/SearchHeader";
@@ -9,9 +8,28 @@ import ResultsHeader from "../../components/Headers/ResultsHeader";
 import Card from "@material-ui/core/Card";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+
+const resultsCard = {
+  margin: "5px",
+  textAlign: "center"
+};
 
 const linkStyles = {
   textDecoration: "none"
+};
+
+const defaultCard = {
+  textAlign: "center",
+  backgroundColor: "blue",
+  width: "fit-content",
+  margin: "5px auto",
+  padding: "5px auto"
+};
+
+const defaultCardText = {
+  color: "ghostwhite",
+  padding: "5px"
 };
 
 export default class Articles extends Component {
@@ -109,48 +127,31 @@ export default class Articles extends Component {
         <ResultsHeader />
 
         {this.state.articles.length ? (
-          <Card>
-            <List>
-              {this.state.articles.map(article => (
-                <ListItem key={article._id} id={article._id}>
-                  <Typography variant="h6">{article.headline.main}</Typography>
-                  <Divider variant="middle" />
-                  <div>{article.snippet}</div>
-                  <div>{article.pub_date}</div>
-                  <button>
-                    <a
-                      href={article.web_url}
-                      target="_blank"
-                      style={linkStyles}
-                    >
-                      READ IT HERE
-                    </a>
-                  </button>
-                  <button
-                    id={article._id}
-                    className="save-button"
-                    onClick={this.saveArticle}
-                  >
-                    SAVE
-                  </button>
-                </ListItem>
-              ))}
-            </List>
-          </Card>
+          <Grid>
+            {this.state.articles.map(article => (
+              <Card key={article._id} id={article._id} style={resultsCard}>
+                <Typography variant="h6">{article.headline.main}</Typography>
+                <Divider variant="middle" />
+                <div>{article.snippet}</div>
+                <div>{article.pub_date}</div>
+                <button>
+                  <a href={article.web_url} target="_blank" style={linkStyles}>
+                    READ IT HERE
+                  </a>
+                </button>
+                <button
+                  id={article._id}
+                  className="save-button"
+                  onClick={this.saveArticle}
+                >
+                  SAVE
+                </button>
+              </Card>
+            ))}
+          </Grid>
         ) : (
-          <Card
-            style={{
-              textAlign: "center",
-              backgroundColor: "blue",
-              width: "fit-content",
-              margin: "5px auto",
-              padding: "5px auto"
-            }}
-          >
-            <Typography
-              variant="h5"
-              style={{ color: "ghostwhite", padding: "5px" }}
-            >
+          <Card style={{ defaultCard }}>
+            <Typography variant="h5" style={{ defaultCardText }}>
               No Results to Display
             </Typography>
           </Card>

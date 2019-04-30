@@ -58,7 +58,7 @@ export default class SavedArticles extends Component {
     });
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     API.getAllSavedArticles()
       .then(res => {
         this.setState({ savedArticles: res.data });
