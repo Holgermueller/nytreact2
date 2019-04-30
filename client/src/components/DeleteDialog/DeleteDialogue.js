@@ -11,6 +11,7 @@ import API from "../../utils/API";
 
 const deleteButton = {
   backgroundColor: "red",
+  color: "ghostwhite",
   margin: "4px",
   textAlign: "center"
 };

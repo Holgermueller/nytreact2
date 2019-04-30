@@ -3,7 +3,7 @@ import API from "../../utils/API";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
-import DeleteDialogue from "../../components/DeleteDialog";
+//import DeleteDialogue from "../../components/DeleteDialog";
 import SavedHeader from "../../components/Headers/SavedHeader";
 import HomeLink from "../../components/Links/HomeLink";
 import Typography from "@material-ui/core/Typography";
@@ -26,21 +26,18 @@ const buttonStyles = {
   margin: "4px"
 };
 
-const ArticleFromDatabse = props => (
-  <Card
-    style={savedArticleCard}
-    key={props.articleFromDatabase.id}
-    _id={props.articleFromDatabase.id}
-  >
-    <Typography variant="h5">{props.articleFromDatabase.headline}</Typography>
-    <Divider variant="middle" />
-    <Typography>{props.articleFromDatabase.snippet}</Typography>
-    <a href={props.articleFromDatabase.web_url} style={linkStyles}>
-      <Button style={buttonStyles}>READ IT</Button>
-    </a>
-    <DeleteDialogue {...this.props} />
-  </Card>
-);
+const defaultCard = {
+  backgroundColor: "blue",
+  width: "fit-content",
+  margin: "5px auto",
+  padding: "5px auto"
+};
+
+const defaultCardText = {
+  color: "ghostwhite",
+  padding: "5px",
+  textAlign: "center"
+};
 
 export default class SavedArticles extends Component {
   constructor(props) {
@@ -50,15 +47,11 @@ export default class SavedArticles extends Component {
     };
   }
 
-  loadSavedArticles = () => {
-    return this.state.savedArticles.map(function(oneSavedArticle, i) {
-      return (
-        <ArticleFromDatabse articleFromDatabase={oneSavedArticle} key={i} />
-      );
-    });
+  componentDidMount = () => {
+    this.loadArticlesFromDatabase();
   };
 
-  componentDidMount = () => {
+  loadArticlesFromDatabase = () => {
     API.getAllSavedArticles()
       .then(res => {
         this.setState({ savedArticles: res.data });
@@ -66,16 +59,50 @@ export default class SavedArticles extends Component {
       .catch(err => {
         console.log(err);
       });
-  }
+  };
+
+  handleDelete = id => {
+    console.log(id);
+    console.log(this.props.match.params);
+
+    // API.deleteArticle(this.props.match.params.id)
+    //   .then(res => console.log(res.data))
+    //   .catch(err => console.log(err));
+
+    // this.props.history.push("/saved");
+  };
 
   render() {
     return (
       <div>
         <SavedHeader />
         <br />
-        <div>
-          <Grid>{this.loadSavedArticles()}</Grid>
-        </div>
+        {this.state.savedArticles.length ? (
+          <Grid>
+            {this.state.savedArticles.map((oneSavedArticle, i) => (
+              <Card
+                style={savedArticleCard}
+                key={i}
+              >
+                <Typography variant="h5">{oneSavedArticle.headline}</Typography>
+                <Divider variant="middle" />
+                <Typography>{oneSavedArticle.snippet}</Typography>
+                <a href={oneSavedArticle.web_url} style={linkStyles}>
+                  <Button style={buttonStyles}>READ IT</Button>
+                </a>
+
+                <button onClick={this.handleDelete}>Delete</button>
+                {/* <DeleteDialogue id={props.articleFromDatabase.id} {...this.props} /> */}
+              </Card>
+            ))}
+          </Grid>
+        ) : (
+          <Card style={defaultCard}>
+            <Typography variant="h5" style={defaultCardText}>
+              No Articles To Display!
+            </Typography>{" "}
+          </Card>
+        )}
         <HomeLink />
       </div>
     );
