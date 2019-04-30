@@ -2,12 +2,24 @@ import axios from "axios";
 
 const API = {
   nytSearch: function(topic, startYear, endYear) {
+    if (startYear === "") {
+      startYear = "2019";
+    }
+
+    if (endYear === "" || Number(endYear) < Number(startYear)) {
+      endYear = Number(startYear) + 1;
+    }
     const APIKEY = "GOQZtddsgF2XHczhw8FxoNiAArFkNS6z";
     const queryUrl =
       "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" +
       APIKEY +
       "&q=" +
-      topic;
+      topic +
+      "&begin_date=" +
+      startYear +
+      "0101&end_date=" +
+      endYear +
+      "1231";
     return axios.get(queryUrl);
   },
 

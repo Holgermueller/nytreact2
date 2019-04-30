@@ -20,7 +20,6 @@ const linkStyles = {
 };
 
 const defaultCard = {
-  textAlign: "center",
   backgroundColor: "blue",
   width: "fit-content",
   margin: "5px auto",
@@ -29,7 +28,8 @@ const defaultCard = {
 
 const defaultCardText = {
   color: "ghostwhite",
-  padding: "5px"
+  padding: "5px",
+  textAlign: "center"
 };
 
 export default class Articles extends Component {
@@ -150,8 +150,8 @@ export default class Articles extends Component {
             ))}
           </Grid>
         ) : (
-          <Card style={{ defaultCard }}>
-            <Typography variant="h5" style={{ defaultCardText }}>
+          <Card style={defaultCard}>
+            <Typography variant="h5" style={defaultCardText}>
               No Results to Display
             </Typography>
           </Card>
