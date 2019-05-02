@@ -62,14 +62,11 @@ export default class SavedArticles extends Component {
   };
 
   handleDelete = id => {
-    console.log(id);
-    console.log(this.props.match.params);
+    API.deleteArticle(id)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
 
-    // API.deleteArticle(this.props.match.params.id)
-    //   .then(res => console.log(res.data))
-    //   .catch(err => console.log(err));
-
-    // this.props.history.push("/saved");
+    this.props.history.push("/saved");
   };
 
   render() {
@@ -80,10 +77,7 @@ export default class SavedArticles extends Component {
         {this.state.savedArticles.length ? (
           <Grid>
             {this.state.savedArticles.map((oneSavedArticle, i) => (
-              <Card
-                style={savedArticleCard}
-                key={i}
-              >
+              <Card style={savedArticleCard} key={i}>
                 <Typography variant="h5">{oneSavedArticle.headline}</Typography>
                 <Divider variant="middle" />
                 <Typography>{oneSavedArticle.snippet}</Typography>
@@ -91,7 +85,9 @@ export default class SavedArticles extends Component {
                   <Button style={buttonStyles}>READ IT</Button>
                 </a>
 
-                <button onClick={this.handleDelete}>Delete</button>
+                <button onClick={() => this.handleDelete(oneSavedArticle._id)}>
+                  Delete
+                </button>
                 {/* <DeleteDialogue id={props.articleFromDatabase.id} {...this.props} /> */}
               </Card>
             ))}

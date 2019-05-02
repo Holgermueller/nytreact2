@@ -32,7 +32,6 @@ const API = {
   },
 
   deleteArticle: function(id) {
-    console.log(id);
     return axios.delete("/api/articles/" + id);
   }
 };
