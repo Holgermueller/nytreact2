@@ -6,7 +6,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
-import Divider from "@material-ui/core/Divider";
 import API from "../../utils/API";
 
 const deleteButton = {
@@ -15,6 +14,14 @@ const deleteButton = {
   margin: "4px",
   textAlign: "center"
 };
+
+const dialogTitleDisplay = {
+  backgroundColor: "red"
+};
+
+const dialogText = {
+  padding: "5px"
+}
 
 function Transition(props) {
   return <Slide direction="right" {...props} />;
@@ -34,11 +41,11 @@ export default class DeleteAlertDialogue extends React.Component {
   };
 
   handleDelete = id => {
-    API.deleteArticle(this.props.match.params.id)
+    API.deleteArticle(id)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
 
-    this.props.history.push("/articles");
+    this.props.history.push("/saved");
   };
 
   render() {
@@ -59,10 +66,12 @@ export default class DeleteAlertDialogue extends React.Component {
           aria-labelledby="alert-dialog-slide-title"
           aria-describedby="alert-dialog-slide-description"
         >
-          <DialogTitle>{"Delete article...?"}</DialogTitle>
-          <Divider />
+          <DialogTitle style={dialogTitleDisplay}>
+            {"Delete article...?"}
+          </DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-slide-description">
+            <DialogContentText id="alert-dialog-slide-description"
+            style={dialogText}>
               Are you sure you want to delete this article?
             </DialogContentText>
           </DialogContent>
@@ -70,7 +79,10 @@ export default class DeleteAlertDialogue extends React.Component {
             <Button onClick={this.handleClose} color="secondary">
               NO
             </Button>
-            <Button onClick={this.handleDelete} color="primary">
+            <Button
+              onClick={() => this.handleDelete(this.oneSavedArticle._id)}
+              color="primary"
+            >
               YES
             </Button>
           </DialogActions>

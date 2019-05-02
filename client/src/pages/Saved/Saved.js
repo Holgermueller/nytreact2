@@ -3,7 +3,7 @@ import API from "../../utils/API";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
-//import DeleteDialogue from "../../components/DeleteDialog";
+import DeleteDialogue from "../../components/DeleteDialog";
 import SavedHeader from "../../components/Headers/SavedHeader";
 import HomeLink from "../../components/Links/HomeLink";
 import Typography from "@material-ui/core/Typography";
@@ -61,13 +61,13 @@ export default class SavedArticles extends Component {
       });
   };
 
-  handleDelete = id => {
-    API.deleteArticle(id)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+  // handleDelete = id => {
+  //   API.deleteArticle(id)
+  //     .then(res => console.log(res.data))
+  //     .catch(err => console.log(err));
 
-    this.props.history.push("/saved");
-  };
+  //   this.props.history.push("/saved");
+  // };
 
   render() {
     return (
@@ -85,10 +85,10 @@ export default class SavedArticles extends Component {
                   <Button style={buttonStyles}>READ IT</Button>
                 </a>
 
-                <button onClick={() => this.handleDelete(oneSavedArticle._id)}>
+                {/* <button onClick={() => this.handleDelete(oneSavedArticle._id)}>
                   Delete
-                </button>
-                {/* <DeleteDialogue id={props.articleFromDatabase.id} {...this.props} /> */}
+                </button> */}
+                <DeleteDialogue {...this.props} />
               </Card>
             ))}
           </Grid>
@@ -96,7 +96,7 @@ export default class SavedArticles extends Component {
           <Card style={defaultCard}>
             <Typography variant="h5" style={defaultCardText}>
               No Articles To Display!
-            </Typography>{" "}
+            </Typography>
           </Card>
         )}
         <HomeLink />
