@@ -85,9 +85,6 @@ export default class SavedArticles extends Component {
                   <Button style={buttonStyles}>READ IT</Button>
                 </a>
 
-                {/* <button onClick={() => this.handleDelete(oneSavedArticle._id)}>
-                  Delete
-                </button> */}
                 <DeleteDialogue {...this.props} />
               </Card>
             ))}
