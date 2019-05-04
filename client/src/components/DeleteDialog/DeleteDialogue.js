@@ -26,8 +26,7 @@ export default class DeleteAlertDialogue extends React.Component {
 
   handleDelete = id => {
     console.log(id);
-    console.log(this);
-    API.deleteArticle(id)
+    API.deleteArticle(this)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
 
@@ -42,7 +41,7 @@ export default class DeleteAlertDialogue extends React.Component {
           variant="outlined"
           onClick={this.handleClickOpen}
         >
-          DELETE?
+          DELETE
         </Button>
         <Dialog
           open={this.state.open}
