@@ -3,7 +3,6 @@ import API from "../../utils/API";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
-import DeleteDialogue from "../../components/DeleteDialog";
 import SavedHeader from "../../components/Headers/SavedHeader";
 import HomeLink from "../../components/Links/HomeLink";
 import Typography from "@material-ui/core/Typography";
@@ -61,13 +60,13 @@ export default class SavedArticles extends Component {
       });
   };
 
-  // handleDelete = id => {
-  //   API.deleteArticle(id)
-  //     .then(res => console.log(res.data))
-  //     .catch(err => console.log(err));
+  handleDelete = id => {
+    API.deleteArticle(id)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
 
-  //   this.props.history.push("/saved");
-  // };
+    window.location.reload();
+  };
 
   render() {
     return (
@@ -85,7 +84,9 @@ export default class SavedArticles extends Component {
                   <Button style={buttonStyles}>READ IT</Button>
                 </a>
 
-                <DeleteDialogue {...this.props} />
+                <Button onClick={() => this.handleDelete(oneSavedArticle._id)}>
+                  DELETE
+                </Button>
               </Card>
             ))}
           </Grid>
