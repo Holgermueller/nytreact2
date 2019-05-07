@@ -11,12 +11,28 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
 const resultsCard = {
-  margin: "5px",
-  textAlign: "center"
+  margin: "4px auto 4px auto",
+  width: "55%",
+  minHeight: "150px",
+  textAlign: "center",
+  padding: "8px"
+};
+
+const snippetStyles = {
+  padding: "5px"
+};
+
+const dateStyles = {
+  padding: "5px"
+};
+
+const buttonDiv = {
+  padding: "4px"
 };
 
 const linkStyles = {
-  textDecoration: "none"
+  textDecoration: "none",
+  color: "ghostwhite"
 };
 
 const defaultCard = {
@@ -95,6 +111,7 @@ export default class Articles extends Component {
   render() {
     return (
       <div>
+        <SavedLink />
         <SearchHeader />
         <form>
           <Input
@@ -130,22 +147,28 @@ export default class Articles extends Component {
           <Grid>
             {this.state.articles.map(article => (
               <Card key={article._id} id={article._id} style={resultsCard}>
-                <Typography variant="h6">{article.headline.main}</Typography>
+                <Typography variant="h5">{article.headline.main}</Typography>
                 <Divider variant="middle" />
-                <div>{article.snippet}</div>
-                <div>{article.pub_date}</div>
-                <button>
-                  <a href={article.web_url} target="_blank" style={linkStyles}>
-                    READ IT HERE
-                  </a>
-                </button>
-                <button
-                  id={article._id}
-                  className="save-button"
-                  onClick={this.saveArticle}
-                >
-                  SAVE
-                </button>
+                <div style={snippetStyles}>{article.snippet}</div>
+                <div style={dateStyles}><p>Published:</p>{article.pub_date}</div>
+                <div style={buttonDiv}>
+                  <button>
+                    <a
+                      href={article.web_url}
+                      target="_blank"
+                      style={linkStyles}
+                    >
+                      READ IT HERE
+                    </a>
+                  </button>
+                  <button
+                    id={article._id}
+                    className="save-button"
+                    onClick={this.saveArticle}
+                  >
+                    SAVE
+                  </button>
+                </div>
               </Card>
             ))}
           </Grid>
@@ -156,7 +179,6 @@ export default class Articles extends Component {
             </Typography>
           </Card>
         )}
-        <SavedLink />
       </div>
     );
   }

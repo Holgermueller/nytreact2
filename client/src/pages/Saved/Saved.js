@@ -6,7 +6,6 @@ import Divider from "@material-ui/core/Divider";
 import SavedHeader from "../../components/Headers/SavedHeader";
 import HomeLink from "../../components/Links/HomeLink";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 
 const savedArticleCard = {
   margin: "4px auto 4px auto",
@@ -15,14 +14,23 @@ const savedArticleCard = {
   textAlign: "center"
 };
 
+const snippetStyles = {
+  padding: "5px"
+}
+
 const linkStyles = {
   textDecortaion: "none"
 };
 
-const buttonStyles = {
+const linkButtonStyles = {
   backgroundColor: "blue",
   color: "ghostwhite",
   margin: "4px"
+};
+
+const deleteButton = {
+  backgroundColor: "red",
+  color: "ghostwhite"
 };
 
 const defaultCard = {
@@ -71,6 +79,7 @@ export default class SavedArticles extends Component {
   render() {
     return (
       <div>
+        <HomeLink />
         <SavedHeader />
         <br />
         {this.state.savedArticles.length ? (
@@ -79,14 +88,17 @@ export default class SavedArticles extends Component {
               <Card style={savedArticleCard} key={i}>
                 <Typography variant="h5">{oneSavedArticle.headline}</Typography>
                 <Divider variant="middle" />
-                <Typography>{oneSavedArticle.snippet}</Typography>
+                <Typography style={snippetStyles}>{oneSavedArticle.snippet}</Typography>
                 <a href={oneSavedArticle.web_url} style={linkStyles}>
-                  <Button style={buttonStyles}>READ IT</Button>
+                  <button style={linkButtonStyles}>READ IT</button>
                 </a>
 
-                <Button onClick={() => this.handleDelete(oneSavedArticle._id)}>
+                <button
+                  onClick={() => this.handleDelete(oneSavedArticle._id)}
+                  style={deleteButton}
+                >
                   DELETE
-                </Button>
+                </button>
               </Card>
             ))}
           </Grid>
@@ -97,7 +109,6 @@ export default class SavedArticles extends Component {
             </Typography>
           </Card>
         )}
-        <HomeLink />
       </div>
     );
   }
