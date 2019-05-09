@@ -6,6 +6,7 @@ import Divider from "@material-ui/core/Divider";
 import SavedHeader from "../../components/Headers/SavedHeader";
 import HomeLink from "../../components/Links/HomeLink";
 import Typography from "@material-ui/core/Typography";
+import DeleteDialog from "../../components/DeleteDialog";
 
 const savedArticleCard = {
   margin: "4px auto 4px auto",
@@ -16,7 +17,7 @@ const savedArticleCard = {
 
 const snippetStyles = {
   padding: "5px"
-}
+};
 
 const linkStyles = {
   textDecortaion: "none"
@@ -26,11 +27,6 @@ const linkButtonStyles = {
   backgroundColor: "blue",
   color: "ghostwhite",
   margin: "4px"
-};
-
-const deleteButton = {
-  backgroundColor: "red",
-  color: "ghostwhite"
 };
 
 const defaultCard = {
@@ -68,14 +64,6 @@ export default class SavedArticles extends Component {
       });
   };
 
-  handleDelete = id => {
-    API.deleteArticle(id)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
-
-    window.location.reload();
-  };
-
   render() {
     return (
       <div>
@@ -88,17 +76,17 @@ export default class SavedArticles extends Component {
               <Card style={savedArticleCard} key={i}>
                 <Typography variant="h5">{oneSavedArticle.headline}</Typography>
                 <Divider variant="middle" />
-                <Typography style={snippetStyles}>{oneSavedArticle.snippet}</Typography>
+                <Typography style={snippetStyles}>
+                  {oneSavedArticle.snippet}
+                </Typography>
                 <a href={oneSavedArticle.web_url} style={linkStyles}>
                   <button style={linkButtonStyles}>READ IT</button>
                 </a>
 
-                <button
-                  onClick={() => this.handleDelete(oneSavedArticle._id)}
-                  style={deleteButton}
-                >
-                  DELETE
-                </button>
+                <DeleteDialog
+                  id={oneSavedArticle._id}
+                  value={oneSavedArticle.headline}
+                />
               </Card>
             ))}
           </Grid>

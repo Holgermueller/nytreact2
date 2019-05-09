@@ -2,6 +2,8 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import Divider from "@material-ui/core/Divider";
@@ -14,7 +16,7 @@ function Transition(props) {
 export default class DeleteAlertDialogue extends React.Component {
   state = {
     open: false,
-    article_title: ""
+    headline: ""
   };
 
   handleClickOpen = () => {
@@ -25,20 +27,11 @@ export default class DeleteAlertDialogue extends React.Component {
     this.setState({ open: false });
   };
 
-  componentDidMount() {
-    console.log(this)
-    API.getSingleArticleInfo(this.props.match.params.id).then(res => {
-      console.log(res);
-    });
-  }
-
   handleDelete = id => {
-    console.log(id);
-    API.deleteArticle(this)
+    API.deleteArticle(id)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
-
-    // this.props.history.push("/saved");
+    window.location.reload();
   };
 
   render() {
@@ -61,12 +54,16 @@ export default class DeleteAlertDialogue extends React.Component {
         >
           <DialogTitle>{"Delete this article?"}</DialogTitle>
           <Divider variant="middle" />
+          <DialogContent>
+            <DialogContentText>{this.props.value}</DialogContentText>
+          </DialogContent>
+
           <DialogActions>
             <Button onClick={this.handleClose} color="secondary">
               NO
             </Button>
             <Button
-              onClick={() => this.handleDelete(this.props)}
+              onClick={() => this.handleDelete(this.props.id)}
               color="primary"
             >
               YES
