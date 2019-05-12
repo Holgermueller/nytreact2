@@ -33,10 +33,6 @@ const API = {
 
   deleteArticle: function(id) {
     return axios.delete("/api/articles/" + id);
-  },
-
-  getSingleArticleInfo: function(id) {
-    return axios.get("/api/articles" + id);
   }
 };
 

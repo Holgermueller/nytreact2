@@ -85,7 +85,7 @@ export default class SavedArticles extends Component {
 
                 <DeleteDialog
                   id={oneSavedArticle._id}
-                  value={oneSavedArticle.headline}
+                  headline={oneSavedArticle.headline}
                 />
               </Card>
             ))}

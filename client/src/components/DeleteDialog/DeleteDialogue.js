@@ -16,7 +16,6 @@ function Transition(props) {
 export default class DeleteAlertDialogue extends React.Component {
   state = {
     open: false,
-    headline: ""
   };
 
   handleClickOpen = () => {
@@ -55,7 +54,7 @@ export default class DeleteAlertDialogue extends React.Component {
           <DialogTitle>{"Delete this article?"}</DialogTitle>
           <Divider variant="middle" />
           <DialogContent>
-            <DialogContentText>{this.props.value}</DialogContentText>
+            <DialogContentText>{this.props.headline}</DialogContentText>
           </DialogContent>
 
           <DialogActions>
