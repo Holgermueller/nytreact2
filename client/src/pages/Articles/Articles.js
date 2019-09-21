@@ -9,7 +9,6 @@ import Card from "@material-ui/core/Card";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import FormatDate from "../../utils/FormatDate";
 
 const resultsCard = {
   margin: "4px auto 4px auto",
@@ -157,6 +156,7 @@ export default class Articles extends Component {
                     <a
                       href={article.web_url}
                       target="_blank"
+                      rel="noopener noreferrer"
                       style={linkStyles}
                     >
                       READ IT HERE

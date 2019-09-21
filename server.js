@@ -22,7 +22,7 @@ app.use("/", routes);
 mongoose.Promise = global.Promise;
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/NYTarticlesDatabase",
-  { useNewUrlParser: true }
+  { useNewUrlParser: true, useUnifiedTopology: true }
 );
 const connection = mongoose.connection;
 connection.once("open", () => {

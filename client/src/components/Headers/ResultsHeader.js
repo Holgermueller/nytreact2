@@ -9,7 +9,8 @@ const cardStyles = {
 
 const headerText = {
   textAlign: "center",
-  padding: "6px"
+  padding: "6px",
+  color: "#080808"
 };
 
 export default class ResultsHeader extends Component {

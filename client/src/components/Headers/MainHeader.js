@@ -12,6 +12,7 @@ const headerCard = {
 const header = {
   textAlign: "center",
   fontStyle: "bold",
+  color: "#080808"
 };
 
 const subHeader = {

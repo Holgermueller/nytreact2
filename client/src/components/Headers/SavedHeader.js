@@ -9,7 +9,8 @@ const cardStyles = {
 
 const sectionName = {
   textAlign: "center",
-  padding: "6px"
+  padding: "6px",
+  marginTop: "8px"
 };
 
 export default class SavedHeader extends Component {
