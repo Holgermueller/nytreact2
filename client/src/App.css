@@ -1,3 +1,5 @@
+/* Image by Andrys Stienstra from Pixbay */
 body {
+  background-image: url("./images/newspaper.jpg");
   background-color: ghostwhite;
 }
