@@ -9,6 +9,7 @@ import Card from "@material-ui/core/Card";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import Moment from "react-moment";
 
 const resultsCard = {
   margin: "4px auto 4px auto",
@@ -150,7 +151,10 @@ export default class Articles extends Component {
                 <Typography variant="h5">{article.headline.main}</Typography>
                 <Divider variant="middle" />
                 <div style={snippetStyles}>{article.snippet}</div>
-                <div style={dateStyles}><p>Published:</p>{article.pub_date}</div>
+                <div style={dateStyles}>
+                  <p>Published:</p>
+                  <Moment format="dddd, MMMM Do YYYY" date={article.pub_date} />
+                </div>
                 <div style={buttonDiv}>
                   <button>
                     <a
