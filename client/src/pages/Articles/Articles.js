@@ -153,7 +153,7 @@ export default class Articles extends Component {
                 <div style={snippetStyles}>{article.snippet}</div>
                 <div style={dateStyles}>
                   <p>Published:</p>
-                  <Moment format="dddd, MMMM Do YYYY" date={article.pub_date} />
+                  <Moment format="dddd, MMMM Do, YYYY" date={article.pub_date} />
                 </div>
                 <div style={buttonDiv}>
                   <button>

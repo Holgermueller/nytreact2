@@ -7,6 +7,7 @@ import SavedHeader from "../../components/Headers/SavedHeader";
 import HomeLink from "../../components/Links/HomeLink";
 import Typography from "@material-ui/core/Typography";
 import DeleteDialog from "../../components/DeleteDialog";
+import Moment from "react-moment";
 
 const savedArticleCard = {
   margin: "4px auto 4px auto",
@@ -46,7 +47,8 @@ export default class SavedArticles extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      savedArticles: []
+      savedArticles: [],
+      // shadow: 1
     };
   }
 
@@ -64,6 +66,9 @@ export default class SavedArticles extends Component {
       });
   };
 
+  // onMouseOver = () => this.setState({ shadow: 12 });
+  // onMouseOut = () => this.setState({ shadow: 1 });
+
   render() {
     return (
       <div>
@@ -73,8 +78,22 @@ export default class SavedArticles extends Component {
         {this.state.savedArticles.length ? (
           <Grid>
             {this.state.savedArticles.map((oneSavedArticle, i) => (
-              <Card style={savedArticleCard} key={i}>
+              <Card
+                style={savedArticleCard}
+                key={i}
+                // onMouseOver={this.onMouseOver}
+                // onMouseOut={this.onMouseOut}
+                // z-index={this.state.shadow}
+              >
                 <Typography variant="h5">{oneSavedArticle.headline}</Typography>
+                <br />
+                <Typography varient="h6">
+                  Originally published:
+                  <Moment
+                    format="dddd, MMMM Do, YYYY"
+                    date={oneSavedArticle.pub_date}
+                  />
+                </Typography>
                 <Divider variant="middle" />
                 <Typography style={snippetStyles}>
                   {oneSavedArticle.snippet}
