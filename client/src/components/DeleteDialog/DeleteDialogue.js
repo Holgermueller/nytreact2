@@ -9,13 +9,17 @@ import Slide from "@material-ui/core/Slide";
 import Divider from "@material-ui/core/Divider";
 import API from "../../utils/API";
 
+const openDeleteModal = {
+  padding: "4px"
+};
+
 function Transition(props) {
   return <Slide direction="right" {...props} />;
 }
 
 export default class DeleteAlertDialogue extends React.Component {
   state = {
-    open: false,
+    open: false
   };
 
   handleClickOpen = () => {
@@ -37,6 +41,7 @@ export default class DeleteAlertDialogue extends React.Component {
     return (
       <div>
         <Button
+          style={openDeleteModal}
           color="secondary"
           variant="outlined"
           onClick={this.handleClickOpen}

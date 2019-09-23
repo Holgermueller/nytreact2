@@ -171,7 +171,7 @@ export default class Articles extends Component {
                     className="save-button"
                     onClick={this.saveArticle}
                   >
-                    SAVE
+                    SAVE AND READ LATER
                   </button>
                 </div>
               </Card>

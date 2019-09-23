@@ -5,10 +5,11 @@ import Typography from "@material-ui/core/Typography";
 
 const linkStyles = {
   textDecoration: "none",
+  cursor: "pointer"
 }
 
 const linkCard = {
-  margin: "2px auto 0 auto",
+  margin: "8px auto",
   width: "fit-content",
   backgroundColor: "blue"
 }

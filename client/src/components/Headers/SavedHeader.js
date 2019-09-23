@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 
 const cardStyles = {
   width: "fit-content",
-  margin: "0 auto"
+  margin: "2px auto"
 };
 
 const sectionName = {

@@ -98,7 +98,8 @@ export default class SavedArticles extends Component {
                 <Typography style={snippetStyles}>
                   {oneSavedArticle.snippet}
                 </Typography>
-                <a href={oneSavedArticle.web_url} style={linkStyles}>
+              <div>
+              <a href={oneSavedArticle.web_url} style={linkStyles}>
                   <button style={linkButtonStyles}>READ IT</button>
                 </a>
 
@@ -106,6 +107,7 @@ export default class SavedArticles extends Component {
                   id={oneSavedArticle._id}
                   headline={oneSavedArticle.headline}
                 />
+              </div>
               </Card>
             ))}
           </Grid>
