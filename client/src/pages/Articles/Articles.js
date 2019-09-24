@@ -9,6 +9,7 @@ import Card from "@material-ui/core/Card";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import Button from '@material-ui/core/Button';
 import Moment from "react-moment";
 
 const resultsCard = {
@@ -33,7 +34,7 @@ const buttonDiv = {
 
 const linkStyles = {
   textDecoration: "none",
-  color: "ghostwhite"
+  color: "blue"
 };
 
 const defaultCard = {
@@ -156,23 +157,25 @@ export default class Articles extends Component {
                   <Moment format="dddd, MMMM Do, YYYY" date={article.pub_date} />
                 </div>
                 <div style={buttonDiv}>
-                  <button>
+                  <Button>
                     <a
                       href={article.web_url}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={linkStyles}
+                      
                     >
                       READ IT HERE
                     </a>
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     id={article._id}
-                    className="save-button"
+                    color="primary"
+                    variant="text"
                     onClick={this.saveArticle}
                   >
                     SAVE AND READ LATER
-                  </button>
+                  </Button>
                 </div>
               </Card>
             ))}

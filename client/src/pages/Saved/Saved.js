@@ -6,7 +6,9 @@ import Divider from "@material-ui/core/Divider";
 import SavedHeader from "../../components/Headers/SavedHeader";
 import HomeLink from "../../components/Links/HomeLink";
 import Typography from "@material-ui/core/Typography";
+import CardActions from "@material-ui/core/CardActions"
 import DeleteDialog from "../../components/DeleteDialog";
+import Button from "@material-ui/core/Button"
 import Moment from "react-moment";
 
 const savedArticleCard = {
@@ -25,9 +27,10 @@ const linkStyles = {
 };
 
 const linkButtonStyles = {
-  backgroundColor: "blue",
-  color: "ghostwhite",
-  margin: "4px"
+  color: "blue",
+  margin: "4px",
+  textAlign: "center",
+  textDecortaion: "none"
 };
 
 const defaultCard = {
@@ -98,16 +101,16 @@ export default class SavedArticles extends Component {
                 <Typography style={snippetStyles}>
                   {oneSavedArticle.snippet}
                 </Typography>
-              <div>
+              <CardActions>
               <a href={oneSavedArticle.web_url} style={linkStyles}>
-                  <button style={linkButtonStyles}>READ IT</button>
+                  <Button style={linkButtonStyles}>READ IT</Button>
                 </a>
 
                 <DeleteDialog
                   id={oneSavedArticle._id}
                   headline={oneSavedArticle.headline}
                 />
-              </div>
+              </CardActions>
               </Card>
             ))}
           </Grid>

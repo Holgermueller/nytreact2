@@ -43,7 +43,7 @@ export default class DeleteAlertDialogue extends React.Component {
         <Button
           style={openDeleteModal}
           color="secondary"
-          variant="outlined"
+          variant="text"
           onClick={this.handleClickOpen}
         >
           DELETE
